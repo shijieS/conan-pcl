@@ -1,4 +1,4 @@
 sources:
-  "1.0.0":
-    url: "https://github.com/libauthor/libname"
-    sha256: "98f6f57aab0a424469619ed3047728f0d3901ce8f0dea919c11e7966d807e870"
+  "1.11.0":
+    url: "https://github.com/PointCloudLibrary/pcl/archive/pcl-1.11.0.tar.gz"
+    sha256: "4255c3d3572e9774b5a1dccc235711b7a723197b79430ef539c2044e9ce65954"

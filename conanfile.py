@@ -2,8 +2,8 @@ from conans import ConanFile, CMake, tools
 import os
 
 
-class LibnameConan(ConanFile):
-    name = "libname"
+class PCLConan(ConanFile):
+    name = "PCL"
     description = "Keep it short"
     topics = ("conan", "libname", "logging")
     url = "https://github.com/bincrafters/conan-libname"
@@ -20,8 +20,10 @@ class LibnameConan(ConanFile):
     _build_subfolder = "build_subfolder"
     _cmake = None
 
+    version = "1.11.0"
+
     requires = (
-        "zlib/1.2.11"
+        "zlib/1.2.11", "boost/1.72.0", "eigen/3.3.7@conan/stable", "flann/1.9.1"
     )
 
     def config_options(self):
@@ -30,13 +32,14 @@ class LibnameConan(ConanFile):
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
-        extracted_dir = self.name + "-" + self.version
+        extracted_dir = "pcl-pcl-" + self.version
         os.rename(extracted_dir, self._source_subfolder)
 
     def _configure_cmake(self):
         if not self._cmake:
             self._cmake = CMake(self)
-            self._cmake.definitions["BUILD_TESTS"] = False  # example
+            self._cmake.definitions["BUILD_TESTS"] = False
+            self._cmake.definitions["WITH_VTK"] = False
             self._cmake.configure(build_folder=self._build_subfolder)
         return self._cmake
 

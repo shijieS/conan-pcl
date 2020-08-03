@@ -8,4 +8,7 @@ else()
 endif()
 conan_basic_setup()
 
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CONAN_FLANN_ROOT})
+SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} ${CONAN_INCLUDE_DIRS_FLANN})
+
 add_subdirectory("source_subfolder")
