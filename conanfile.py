@@ -16,14 +16,14 @@ class PCLConan(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
 
-    _source_subfolder = "source_subfolder"
+    _source_subfolder = "pcl-pcl-1.11.1"
     _build_subfolder = "build_subfolder"
     _cmake = None
 
     version = "1.11.0"
 
     requires = (
-        "zlib/1.2.11", "boost/1.72.0", "eigen/3.3.7@conan/stable", "flann/1.9.1@themhmoritz3/stable"
+        "zlib/1.2.11", "boost/1.72.0", "eigen/3.3.7@conan/stable", "flann/1.9.1"
     )
 
     def config_options(self):
@@ -32,13 +32,15 @@ class PCLConan(ConanFile):
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
-        extracted_dir = "pcl-pcl-" + self.version
-        os.rename(extracted_dir, self._source_subfolder)
+        # extracted_dir = "pcl-pcl-" + self.version
+        # os.rename(extracted_dir, self._source_subfolder)
 
     def _configure_cmake(self):
         if not self._cmake:
             self._cmake = CMake(self)
-            self._cmake.definitions["BUILD_TESTS"] = False
+            self._cmake.definitions["BUILD_tests"] = False
+            self._cmake.definitions["BUILD_tools"] = False
+            self._cmake.definitions["BUILD_recognition"] = False
             self._cmake.definitions["WITH_VTK"] = False
             self._cmake.definitions["WITH_OPENGL"] = False
             self._cmake.configure(build_folder=self._build_subfolder)
