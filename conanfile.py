@@ -23,7 +23,7 @@ class PCLConan(ConanFile):
     version = "1.11.0"
 
     requires = (
-        "zlib/1.2.11", "boost/1.72.0", "eigen/3.3.7@conan/stable", "flann/1.9.1@themhmoritz3/stable"
+        "zlib/1.2.11", "boost/1.72.0", "eigen/3.3.7@conan/stable", "flann/1.9.1"
     )
 
     def config_options(self):
